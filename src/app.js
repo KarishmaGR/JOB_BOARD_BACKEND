@@ -6,8 +6,10 @@ const app = Express();
 
 app.use(
   cors({
-    origin: true,
+    origin: ["https://job-board-frontend-teal.vercel.app", /vercel\.app$/],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
 
