@@ -25,14 +25,14 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use(
-//   cors({
-//     origin: ["https://job-board-frontend-teal.vercel.app", /vercel\.app$/],
-//     credentials: true,
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     methods: ["GET", "PUT", "POST", "DELETE"],
-//   })
-// );
+app.use(
+  cors({
+    origin: ["https://job-board-frontend-teal.vercel.app", /vercel\.app$/],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
+  })
+);
 
 app.use(Express.json());
 app.use(cookieParser());
