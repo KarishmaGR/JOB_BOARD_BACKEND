@@ -3,7 +3,10 @@ import cookieParser from "cookie-parser";
 
 import cors from "cors";
 const app = Express();
-
+app.use(Express.json());
+app.use(cookieParser());
+app.use(Express.urlencoded({ extended: false }));
+app.use(Express.static("public"));
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
@@ -33,11 +36,6 @@ app.use(
     methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
-
-app.use(Express.json());
-app.use(cookieParser());
-app.use(Express.urlencoded({ extended: false }));
-app.use(Express.static("public"));
 
 import UserRoute from "./Routes/User.Route.js";
 import JobRoute from "./Routes/Job.route.js";
