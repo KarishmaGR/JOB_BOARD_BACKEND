@@ -1,6 +1,8 @@
 import Express from "express";
 import cookieParser from "cookie-parser";
-
+import UserRoute from "./Routes/User.Route.js";
+import JobRoute from "./Routes/Job.route.js";
+import ApplicationRoute from "./Routes/Application.route.js";
 import cors from "cors";
 const app = Express();
 app.use(Express.json());
@@ -8,10 +10,7 @@ app.use(cookieParser());
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.static("public"));
 app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://job-board-frontend-teal.vercel.app"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
@@ -30,16 +29,13 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: ["https://job-board-frontend-teal.vercel.app", /vercel\.app$/],
+    origin: ["http://localhost:3000"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
 
-import UserRoute from "./Routes/User.Route.js";
-import JobRoute from "./Routes/Job.route.js";
-import ApplicationRoute from "./Routes/Application.route.js";
 app.use("/api/v1/user", UserRoute);
 app.use("/api/v1/job", JobRoute);
 app.use("/api/v1/application", ApplicationRoute);
